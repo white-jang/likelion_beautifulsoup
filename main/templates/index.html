@@ -1,14 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Melon Crawling</title>
 </head>
 
 <body>
-    <h1>This is index</h1>
+    <h1>Welcome to Crawling World</h1>
+    <a href="{% url 'crawling' %}">노래! 갖고 와!</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th> 순위 </th>
+                <th> 곡명 </th>
+                <th> 가수 </th>
+                <th> 앨범명 </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for song in songs %}
+            <tr>
+                <th> {{song.rank}} </th>
+                <th> {{song.name}} </th>
+                <th> {{song.singer}} </th>
+                <th> {{song.album}} </th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 
 </html>
