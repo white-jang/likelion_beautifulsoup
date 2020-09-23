@@ -9,7 +9,29 @@ URL = "https://www.melon.com/chart/day/index.htm"
 result = requests.get(URL, headers=iamhuman)
 soup = BeautifulSoup(result.text, "html.parser")
 
-songs = soup.find_all("div", {"class": "ellipsis rank01"})
+""" 순위 """
+rank = soup.find_all("span", {"class": "rank"})
+ranks = []
+for i in rank[1:]:  # 순위 타이틀 제거
+    ranks.append(i.text)
 
-for i in songs:
-    print(i.find("a").text)
+""" 노래 제목 """
+name = soup.find_all("div", {"class": "ellipsis rank01"})
+names = []
+for i in name:
+    names.append(i.find("a").text)
+
+""" 가수 """
+singer = soup.find_all("div", {"class": "ellipsis rank02"})
+singers = []
+for i in singer:
+    singers.append(i.find("a").text)
+
+""" 앨범명 """
+album = soup.find_all("div", {"class": "ellipsis rank03"})
+albums = []
+for i in album:
+    albums.append(i.find("a").text)
+
+for i in range(len(names)):
+    print(ranks[i], names[i], singers[i], albums[i])
